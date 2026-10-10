@@ -14,22 +14,16 @@ Pipe collisions stop the world, rotate the bird downward and let it fall to the 
 From this repository:
 
 ```sh
-python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Open http://127.0.0.1:8000/ .
 
 ## Deploy
 
-Serve the contents of `dist/` with any static web server. JavaScript `.mjs` files must use `application/javascript` and `.wav` files should use `audio/wav`.
+Serve the root HTML, JavaScript, CSS and assets with any static web server. JavaScript `.mjs` files must use `application/javascript` and `.wav` files should use `audio/wav`. Publish only the game files and asset directories, keeping Git metadata and local configuration outside the public web root.
 
-For a different domain, regenerate the static metadata using Node.js:
-
-```sh
-node prepare-host.mjs https://your-game.example
-```
-
-Publish the updated `dist/`, use HTTPS for every game/card asset, and redirect HTTP to HTTPS. The live deployment uses a small isolated Nginx site on an Oracle VPS with a free Let's Encrypt certificate.
+For a different domain, edit the absolute canonical, Open Graph and Twitter Card URLs directly in `index.html` and `embed.html`. Use HTTPS for every game/card asset and redirect HTTP to HTTPS. The live deployment uses a small isolated Nginx site on an Oracle VPS with a free Let's Encrypt certificate.
 
 For embedding, permit the intended frame origins in your server's CSP `frame-ancestors`. The current game permits its own origin plus X/Twitter origins. Do not send `X-Frame-Options: DENY` or `SAMEORIGIN` if you intend to allow X frames.
 
@@ -41,13 +35,16 @@ Desktop X rendering was observed. Mobile X did not show the playable card in the
 
 ## Files
 
-- `dist/`: deployable HTML, ES modules, CSS and assets.
-- `templates/`: HTML templates with an origin placeholder.
-- `prepare-host.mjs`: generates static absolute metadata URLs.
-- `make-frame.mjs` and `make-preview.swift`: optional preview-image generation from the same drawing code; the rasterizer uses macOS AppKit.
+- `index.html` and `embed.html`: direct-play and embedded pages.
+- `engine.mjs`: physics, collision and scoring.
+- `game.mjs`: controls and browser integration.
+- `render.mjs`: Canvas artwork and screens.
+- `audio.mjs`, `audio/`: sound playback and files.
+- `style.css`, `icon.svg`, `preview.png`: layout and visual assets.
+- `notices/`: retained third-party asset credits and license.
 
 ## Credits and licenses
 
 Game code and recreated pixel artwork are released under the [MIT License](LICENSE).
 
-The actual classic sound files are unchanged downloads from [samuelcust/flappy-bird-assets](https://github.com/samuelcust/flappy-bird-assets/tree/master/audio). The community pack publishes an MIT notice by Samuel Custodio (2019); its original [license](dist/notices/flappy-bird-assets-LICENSE.txt), README and [source notice](dist/notices/audio-source.txt) are included. That pack's notice is retained separately from this project's code license; no independent original-rightsholder media grant or official endorsement is asserted. `flap.wav` is a byte-identical alias of `wing.wav`.
+The actual classic sound files are unchanged downloads from [samuelcust/flappy-bird-assets](https://github.com/samuelcust/flappy-bird-assets/tree/master/audio). The community pack publishes an MIT notice by Samuel Custodio (2019); its original [license](notices/flappy-bird-assets-LICENSE.txt), README and [source notice](notices/audio-source.txt) are included. That pack's notice is retained separately from this project's code license; no independent original-rightsholder media grant or official endorsement is asserted. `flap.wav` is a byte-identical alias of `wing.wav`.
