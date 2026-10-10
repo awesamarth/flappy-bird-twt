@@ -1,0 +1,13 @@
+.local/
+.env
+.env.*
+*.pem
+*.key
+*.log
+.DS_Store
+node_modules/
+nginx-http.conf
+nginx-https.conf
+renew-nginx.sh
+ready-frame.png
+embed-ready-frame.png

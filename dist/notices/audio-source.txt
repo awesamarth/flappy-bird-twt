@@ -1,0 +1,13 @@
+Classic sound files downloaded unchanged from:
+https://github.com/samuelcust/flappy-bird-assets/tree/master/audio
+https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/audio/wing.wav
+https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/audio/point.wav
+https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/audio/hit.wav
+https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/audio/die.wav
+https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/audio/swoosh.wav
+
+flap.wav is a byte-identical alias of wing.wav.
+The pack publishes an MIT license: Copyright (c) 2019 Samuel Custodio.
+Its original license and README are included alongside this notice.
+This is a third-party community asset pack, not an official-rightsholder license verification or endorsement.
+Game art and game code in this project are separately recreated.
